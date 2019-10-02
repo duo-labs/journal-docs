@@ -1,0 +1,15 @@
+install:
+  - curl -LO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb
+  - sudo dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb
+script:
+  - hugo
+deploy:
+  - provider: pages
+    local_dir: public
+    github_token: $GITHUB_TOKEN
+    skip_cleanup: true
+    repo: duo-labs/journal
+    on:
+      branch: master
+env:
+    - HUGO_VERSION=0.58.3
